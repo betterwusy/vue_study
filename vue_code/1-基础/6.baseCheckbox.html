@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>子组件的checkbox v-model</title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>组件上的v-model</p>
+    <p>checked: {{ checked }}</p>
+    <base-checkbox v-model="checked"></base-checkbox>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#demo',
+      data: {
+        checked: true,
+      },
+      components: {
+        'base-checkbox': {
+          model: {
+            prop: 'checked',
+            event: 'change'
+          },
+          props: { checked: Boolean },
+          data() {
+            return {}
+          },
+          template: `
+            <div class="base-check-box">
+            <input type="checkbox"
+              id="checkbox"
+              :checked="checked"
+              @change="$emit('change',$event.target.checked)"
+            >
+            <label for="checkbox" style="user-select:none;">{{ checked }}</label>
+            </div>
+          `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

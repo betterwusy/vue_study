@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>渲染函数</title>
+</head>
+
+<body>
+  <div id="demo">
+    <anchored-heading :level="1">
+      <a href="#header1">一级标题</a>
+    </anchored-heading>
+  </div>
+  <script>
+    Vue.component('anchored-heading', {
+      props: {
+        level: {
+          type: Number,
+          require: true
+        }
+      },
+      render: function (createElement) {
+        const vnode = createElement(
+          'h' + this.level,
+          this.$slots.default
+        )
+        console.log(vnode);
+        return vnode;
+      }
+    })
+    const vm = new Vue({
+      el: '#demo',
+      data: {
+        message: ''
+      },
+
+    })
+  </script>
+</body>
+
+</html>

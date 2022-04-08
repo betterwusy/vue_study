@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js">
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    {{ name }}
+    <my-component inline-template>
+      <div>
+        {{ name }}
+      </div>
+    </my-component>
+  </div>
+  <script>
+    Vue.component('my-component', {
+      data() {
+        return {
+          name: 'name from child'
+        }
+      },
+      template: `<div>
+        <p>my-component</p>
+        <p>{{ name }}</p>
+      </div>`
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {
+        name: 'name from parent',
+      }
+    })
+  </script>
+  <style>
+  </style>
+
+</body>
+
+</html>

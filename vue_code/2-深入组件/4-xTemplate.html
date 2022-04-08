@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js">
+  </script>
+</head>
+<body>
+  <div id="app">
+    {{ name }}
+  <x-template-demo></x-template-demo>
+  <script type="text/x-template" id="x-template-demo">
+    <div>
+      <p>这是 x-template 模板里的内容</p>
+      <p>{{ name }}</p>
+    </div>
+  </script>
+  </div>
+</body>
+<script>
+  Vue.component('x-template-demo', {
+    data() {
+      return {
+        name: 'name from child'
+      }
+    },
+    template: '#x-template-demo'
+  })
+  const app = new Vue({
+    el: '#app',
+    data: {
+      name: 'name from parent',
+    }
+  })
+</script>
+<style>
+</style>
+
+</html>

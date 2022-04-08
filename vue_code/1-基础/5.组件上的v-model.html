@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>组件上的v-model</title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>组件上的v-model</p>
+    <base-input v-model="message"></base-input>
+    <p>message: {{ message }}</p>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#demo',
+      data: {
+        message: 'message from parent'
+      },
+      components: {
+        'base-input': {
+          props: ['value'],
+          data() {
+            return {}
+          },
+          template: `
+            <input
+             :value="value"
+             @input="$emit('input',$event.target.value)"
+            >
+            </input>
+          `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

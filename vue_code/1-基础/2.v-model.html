@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="../vue.js"></script>
+	<title>表单输入绑定</title>
+</head>
+
+<body>
+	<div id="demo">
+		<p>文本 text</p>
+		<input type="text" v-model="message" placeholder="edit me">
+		<p>Message is: {{ message }}</p>
+		<hr>
+
+		<p>多行文本 textarea</p>
+		<textarea v-model="multiMessage" placeholder="edit multiple lines"></textarea>
+		<p>Multiline message:</p>
+		<p>{{ multiMessage }}</p>
+		<hr>
+
+		<p>复选框 checkbox</p>
+		<input type="checkbox" id="checkbox" v-model="checked">
+		<label for="checkbox" style="user-select: none;">{{ checked }}</label>
+		<hr>
+
+		<p>多个复选框 checkbox</p>
+		<template v-for="item in options">
+			<input type="checkbox" :id="item" :value="item" v-model="checkedName">
+			<label :for="item" style="user-select: none; margin-right: 20px;">{{ item }}</label>
+		</template>
+		<p>{{ checkedName }}</p>
+		<hr>
+
+		<p>单选按钮 radio</p>
+		<template v-for="item in radioOptions">
+			<input type="radio" :id="item" :value="item" v-model="picked">
+			<label :for="item">{{ item }}</label>
+		</template>
+		<p>picked: {{ picked }}</p>
+		<hr>
+
+		<p>选择框 select</p>
+		<select v-model="selected">
+			<option disabled>请选择</option>
+			<option v-for="option in selectOptions">{{ option }}</option>
+		</select>
+		<p>Selected: {{ selected }}</p>
+
+	</div>
+	<script>
+		const vm = new Vue({
+			el: '#demo',
+			data: {
+				message: 'test',
+				multiMessage: 'multiMessage',
+				checked: true,
+
+				checkOptions: ['Jack', 'John', 'Mike'],
+				checkedName: [],
+
+				radioOptions: ['One', 'Two', 'Three'],
+				picked: '',
+
+				selectOptions: ['A', 'B', 'C'],
+				selected: '',
+			}
+		})
+	</script>
+</body>
+
+</html>

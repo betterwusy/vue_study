@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>{{ message }}</p>
+  </div>
+  <script>
+    var myMixin = {
+      created() {
+        this.hello();
+      },
+      methods: {
+        hello() {
+          console.log('hello from mixin');
+        }
+      }
+    }
+
+    const vm = new Vue({
+      el: '#demo',
+      mixins: [myMixin],
+      data() {
+        return {
+          message: 'test'
+        }
+      },
+      created(){
+        console.log(Vue.config.optionMergeStrategies.methods);
+      }
+    })
+
+  </script>
+</body>
+
+</html>

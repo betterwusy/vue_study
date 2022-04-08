@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js">
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    {{ message }}
+    <!-- 此处传入多个 prop -->
+    <my-component-a :propa="propa" :propb="propb" :message="message">
+    </my-component-a>
+  </div>
+  <script>
+    Vue.component('MyComponentA', {
+      template: `<div id="component-a">
+                    <p>my-component-a</p>
+                  </div>`,
+      //  子组件的 props 没有全部声明父组件传下来的 prop
+      props: ['message'],
+      inheritAttrs: false,
+      created() {
+        // $attrs 记录了非 prop 的 attribute
+        console.log(this.$attrs);
+      },
+      mounted() {
+        let dom = document.getElementById('component-a');
+        console.log(dom.attributes);
+      }
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello vue',
+        required: true,
+        propa: 'propa',
+        propb: 'propb',
+      }
+    })
+  </script>
+</body>
+
+</html>

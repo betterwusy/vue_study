@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.js"></script>
+  <title>自定义指定</title>
+</head>
+
+<body>
+  <div id="demo">
+    <p>自定义指定</p>
+    <input type="text" placeholder="自定义指令" v-focus>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#demo',
+      data() {
+        return {
+          message: ''
+        }
+      },
+      directives: {
+        focus: {
+          inserted(el, binding, vnode, oldVnode) {
+            console.log(el);
+            console.log(binding);
+            console.log(vnode);
+            console.log(oldVnode);
+          }
+        }
+      }
+
+    })
+
+  </script>
+</body>
+
+</html>
